@@ -15,13 +15,6 @@
 		<nature>com.st.stm32cube.ide.mpu.MPUEmbeddedMCUProjectNature</nature>
 		<nature>com.st.stm32cube.ide.mcu.MCUSingleCpuProjectNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>DeviceTree</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/YggdrasilBSP2/Asgard/CA7/DeviceTree</locationURI>
-		</link>
-	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1618916788196</id>
