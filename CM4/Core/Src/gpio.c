@@ -38,7 +38,6 @@
         * EVENT_OUT
         * EXTI
      PA14   ------> RCC_MCO_2
-     ANA0   ------> ADCx_INP0
      PI11   ------> RCC_MCO_1
 */
 void MX_GPIO_Init(void)
@@ -73,9 +72,6 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.Alternate = GPIO_AF0_MCO1;
   HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
-
-  /*AnalogSwitch Config */
-  HAL_SYSCFG_AnalogSwitchConfig(SYSCFG_SWITCH_PA0, SYSCFG_SWITCH_PA0_OPEN);
 
 }
 

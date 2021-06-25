@@ -59,7 +59,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void test(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -124,8 +124,13 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM12_Init();
   MX_TIM16_Init();
+  MX_ADC2_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
 
+  bsp_init();
+
+  test();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -166,20 +171,20 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.CSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLL12SOURCE_HSI;
-  RCC_OscInitStruct.PLL2.PLLM = 4;
-  RCC_OscInitStruct.PLL2.PLLN = 25;
-  RCC_OscInitStruct.PLL2.PLLP = 2;
-  RCC_OscInitStruct.PLL2.PLLQ = 1;
-  RCC_OscInitStruct.PLL2.PLLR = 1;
+  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLL12SOURCE_HSE;
+  RCC_OscInitStruct.PLL2.PLLM = 3;
+  RCC_OscInitStruct.PLL2.PLLN = 100;
+  RCC_OscInitStruct.PLL2.PLLP = 4;
+  RCC_OscInitStruct.PLL2.PLLQ = 2;
+  RCC_OscInitStruct.PLL2.PLLR = 2;
   RCC_OscInitStruct.PLL2.PLLFRACV = 0;
   RCC_OscInitStruct.PLL2.PLLMODE = RCC_PLL_INTEGER;
   RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLL3SOURCE_HSI;
-  RCC_OscInitStruct.PLL3.PLLM = 4;
-  RCC_OscInitStruct.PLL3.PLLN = 25;
-  RCC_OscInitStruct.PLL3.PLLP = 2;
-  RCC_OscInitStruct.PLL3.PLLQ = 4;
+  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLL3SOURCE_HSE;
+  RCC_OscInitStruct.PLL3.PLLM = 2;
+  RCC_OscInitStruct.PLL3.PLLN = 48;
+  RCC_OscInitStruct.PLL3.PLLP = 9;
+  RCC_OscInitStruct.PLL3.PLLQ = 5;
   RCC_OscInitStruct.PLL3.PLLR = 2;
   RCC_OscInitStruct.PLL3.PLLRGE = RCC_PLL3IFRANGE_1;
   RCC_OscInitStruct.PLL3.PLLFRACV = 0;
@@ -204,15 +209,15 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
                               |RCC_CLOCKTYPE_PCLK3|RCC_CLOCKTYPE_PCLK4
                               |RCC_CLOCKTYPE_PCLK5;
-  RCC_ClkInitStruct.AXISSInit.AXI_Clock = RCC_AXISSOURCE_HSI;
+  RCC_ClkInitStruct.AXISSInit.AXI_Clock = RCC_AXISSOURCE_PLL2;
   RCC_ClkInitStruct.AXISSInit.AXI_Div = RCC_AXI_DIV1;
   RCC_ClkInitStruct.MCUInit.MCU_Clock = RCC_MCUSSOURCE_HSI;
   RCC_ClkInitStruct.MCUInit.MCU_Div = RCC_MCU_DIV1;
-  RCC_ClkInitStruct.APB4_Div = RCC_APB4_DIV1;
-  RCC_ClkInitStruct.APB5_Div = RCC_APB5_DIV1;
-  RCC_ClkInitStruct.APB1_Div = RCC_APB1_DIV1;
-  RCC_ClkInitStruct.APB2_Div = RCC_APB2_DIV1;
-  RCC_ClkInitStruct.APB3_Div = RCC_APB3_DIV1;
+  RCC_ClkInitStruct.APB4_Div = RCC_APB4_DIV2;
+  RCC_ClkInitStruct.APB5_Div = RCC_APB5_DIV4;
+  RCC_ClkInitStruct.APB1_Div = RCC_APB1_DIV2;
+  RCC_ClkInitStruct.APB2_Div = RCC_APB2_DIV2;
+  RCC_ClkInitStruct.APB3_Div = RCC_APB3_DIV2;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct) != HAL_OK)
   {
