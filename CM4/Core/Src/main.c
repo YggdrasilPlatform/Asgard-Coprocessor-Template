@@ -33,7 +33,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <yggdrasil.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,7 +59,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void test(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -127,10 +127,7 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-
-  bsp_init();
-
-  test();
+  yggdrasil_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -162,7 +159,7 @@ void SystemClock_Config(void)
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_CSI|RCC_OSCILLATORTYPE_HSI
                               |RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = 16;
@@ -179,21 +176,12 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL2.PLLR = 2;
   RCC_OscInitStruct.PLL2.PLLFRACV = 0;
   RCC_OscInitStruct.PLL2.PLLMODE = RCC_PLL_INTEGER;
-  RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLL3SOURCE_HSE;
-  RCC_OscInitStruct.PLL3.PLLM = 2;
-  RCC_OscInitStruct.PLL3.PLLN = 48;
-  RCC_OscInitStruct.PLL3.PLLP = 9;
-  RCC_OscInitStruct.PLL3.PLLQ = 5;
-  RCC_OscInitStruct.PLL3.PLLR = 2;
-  RCC_OscInitStruct.PLL3.PLLRGE = RCC_PLL3IFRANGE_1;
-  RCC_OscInitStruct.PLL3.PLLFRACV = 0;
-  RCC_OscInitStruct.PLL3.PLLMODE = RCC_PLL_INTEGER;
+  RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
   RCC_OscInitStruct.PLL4.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL4.PLLSource = RCC_PLL4SOURCE_HSE;
   RCC_OscInitStruct.PLL4.PLLM = 4;
   RCC_OscInitStruct.PLL4.PLLN = 100;
-  RCC_OscInitStruct.PLL4.PLLP = 4;
+  RCC_OscInitStruct.PLL4.PLLP = 5;
   RCC_OscInitStruct.PLL4.PLLQ = 8;
   RCC_OscInitStruct.PLL4.PLLR = 25;
   RCC_OscInitStruct.PLL4.PLLRGE = RCC_PLL4IFRANGE_0;
